@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "generate": "prisma generate",
-    "generate:tables": "prisma migrate dev"
+    "generate:tables": "prisma migrate dev",
+    "generate:format": "prisma format"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",

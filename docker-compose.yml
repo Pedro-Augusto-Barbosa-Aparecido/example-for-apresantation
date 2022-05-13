@@ -1,15 +1,13 @@
-version: '3.5'
+volumes:
+  data:
 
 services:
-  db:
-    image: postgres
-    restart: always
+  postgres:
+    image: postgres:latest
     environment:
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: example_db
-
-  adminer:
-    image: adminer
-    restart: always
+      - POSTGRES_PASSWORD=postgrespw
+      - POSTGRES_DB=docker-db
     ports:
-      - 8080:8080
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql
