@@ -6,9 +6,9 @@
   "author": "Pedro Augusto <pedro007augustobarbosa@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "generate": "prisma generate",
-    "generate:tables": "prisma migrate dev",
-    "generate:format": "prisma format"
+    "prisma": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:format": "prisma format"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",

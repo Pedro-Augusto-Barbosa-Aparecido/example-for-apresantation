@@ -11,43 +11,46 @@ datasource db {
 }
 
 model User {
-  id    String  @id @default(uuid())
+  id    String  @id @default(uuid()) @map("_id") @db.ObjectId
   name  String
   email String?
 
-  accountId    Account[]
-  departmentId Department[]
+  accountIds   String[] @db.ObjectId
+  departmentId String[] @db.ObjectId
+
+  accounts   Account[]    @relation(fields: [accountIds], references: [id])
+  department Department[] @relation(fields: [departmentId], references: [id])
 
 }
 
 model Account {
-  id          String        @id @default(uuid())
+  id          String        @id @default(uuid()) @map("_id") @db.ObjectId
   name        String
-  users       User[]         @relation(fields: [userId], references: [id])
-  userId      String?
+  users       User[]        @relation(fields: [userIds], references: [id])
+  userIds     String[]      @db.ObjectId
   outsourcing Outsourcing[]
 
 }
 
 model Department {
-  id   String @id @default(uuid())
+  id   String @id @default(uuid()) @map("_id") @db.ObjectId
   name String
 
-  user   User[]   @relation(fields: [userId], references: [id])
-  userId String?
+  user    User[]   @relation(fields: [userIds], references: [id])
+  userIds String[] @db.ObjectId
 
   outsourcing Outsourcing[]
 
 }
 
 model Outsourcing {
-  id        String @id @default(uuid())
+  id        String @id @default(uuid()) @map("_id") @db.ObjectId
   legacy_sm String
 
   accountId    String?
   departmentId String?
 
-  department Department? @relation(fields: [departmentId], references: [id])
-  account    Account?    @relation(fields: [accountId], references: [id])
+  department Department? @relation(fields: [accountId], references: [id])
+  account    Account?    @relation(fields: [departmentId], references: [id])
 
 }
