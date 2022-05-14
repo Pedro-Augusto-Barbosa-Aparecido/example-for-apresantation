@@ -4,7 +4,7 @@ import { UserCreate } from "./user";
 export type DepartmentCreate = {
     name: string
 
-    users?: Array<UserCreate>
+    user?: Array<UserCreate>
     outsourcing?: Array<OutsourcingCreate>
 
 }
