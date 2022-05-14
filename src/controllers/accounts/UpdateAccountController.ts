@@ -46,7 +46,6 @@ const UpdateAccountController = {
             });
 
         } catch (err) {
-            console.log(err)
             return resp.status(500).json({
                 msg: "Erro na hora de atualizar a account",
                 err,
