@@ -8,7 +8,8 @@
   "scripts": {
     "prisma": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:format": "prisma format"
+    "prisma:format": "prisma format",
+    "serve": "ts-node-dev src/server.ts"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",

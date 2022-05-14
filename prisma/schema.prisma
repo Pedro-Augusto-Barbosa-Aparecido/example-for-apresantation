@@ -6,45 +6,39 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    String  @id @default(uuid()) @map("_id") @db.ObjectId
+  id    String  @id @default(uuid())
   name  String
-  email String?
+  email String
 
-  accountIds   String[] @db.ObjectId
-  departmentId String[] @db.ObjectId
-
-  accounts   Account[]    @relation(fields: [accountIds], references: [id])
-  department Department[] @relation(fields: [departmentId], references: [id])
+  accounts   Account[]
+  department Department[]
 
 }
 
 model Account {
-  id          String        @id @default(uuid()) @map("_id") @db.ObjectId
+  id          String        @id @default(uuid())
   name        String
-  users       User[]        @relation(fields: [userIds], references: [id])
-  userIds     String[]      @db.ObjectId
+  users       User[]
   outsourcing Outsourcing[]
 
 }
 
 model Department {
-  id   String @id @default(uuid()) @map("_id") @db.ObjectId
+  id   String @id @default(uuid())
   name String
 
-  user    User[]   @relation(fields: [userIds], references: [id])
-  userIds String[] @db.ObjectId
-
+  user        User[]
   outsourcing Outsourcing[]
 
 }
 
 model Outsourcing {
-  id        String @id @default(uuid()) @map("_id") @db.ObjectId
+  id        String @id @default(uuid())
   legacy_sm String
 
   accountId    String?
