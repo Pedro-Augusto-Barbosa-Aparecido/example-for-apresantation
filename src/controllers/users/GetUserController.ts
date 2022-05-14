@@ -28,6 +28,38 @@ const GetUserController = {
 
         }
 
+    },
+
+    get: async function (req: Request, resp: Response) {
+        try {
+            const id = req.params.id;
+            const user = await prisma.user.findFirst({
+                where: { id },
+                select: {
+                    id: true,
+                    name: true,
+                    email: true
+                }
+            });
+
+            if (!user) 
+                return resp.status(404).json({
+                    msg: `User ${id} não foi encontrado`
+                });
+
+            return resp.json({
+                result: user
+            });
+
+        } catch (err) {
+            return resp.status(500).json({
+                msg: "Erro na hora de fazer a busca",
+                err
+
+            });
+
+        }
+
     }
 
 };
