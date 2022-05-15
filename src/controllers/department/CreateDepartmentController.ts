@@ -1,4 +1,3 @@
-import { DepartmentCreate } from './../../types/department';
 import { Request, Response } from "express";
 import prisma from "../prismaProvider";
 

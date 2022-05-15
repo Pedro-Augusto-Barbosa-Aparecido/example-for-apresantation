@@ -9,7 +9,8 @@ const CreateAccountController = {
         if (accountToCreate.user) {
             user = {
                 create: {
-                    name: accountToCreate.user.name
+                    name: accountToCreate.user.name,
+                    email: accountToCreate.user.email
                 }
             }
         }
